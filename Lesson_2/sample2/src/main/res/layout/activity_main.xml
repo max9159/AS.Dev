@@ -1,0 +1,39 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ActivityMain">
+
+    <Button
+        android:id="@+id/btnDialogNormal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="dialog normal" />
+
+    <Button
+        android:id="@+id/btnDialogSingleChoice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="dialog Single Choice" />
+
+
+    <Button
+        android:id="@+id/btnMultiChoice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="dialog Multi Choice" />
+
+    <Button
+        android:id="@+id/btnDialogCustomView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="dialog Custom View" />
+
+    <Button
+        android:id="@+id/btnDialogClass"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="dialog by Class" />
+
+</LinearLayout>

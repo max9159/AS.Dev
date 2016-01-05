@@ -1,0 +1,50 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    tools:context=".ActivityMain">
+
+    <Button
+        android:id="@+id/btnSimpleList1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Simple List 1"/>
+
+    <Button
+        android:id="@+id/btnSimpleList2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Simple List 2"/>
+
+    <Button
+        android:id="@+id/btnCustomList"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Custom List"/>
+
+    <Button
+        android:id="@+id/btnCustomListGoogleAnim"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Custom List Google Animation"/>
+
+    <Button
+        android:id="@+id/btnGridView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="GridView"/>
+    <Button
+        android:id="@+id/btnRecyclerView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="RecyclerView"/>
+
+    <Button
+        android:id="@+id/btnRecyclerViewRefresh"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="RecyclerView Refresh"/>
+
+</LinearLayout>

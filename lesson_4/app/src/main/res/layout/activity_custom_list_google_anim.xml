@@ -1,0 +1,20 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    tools:context=".ActivityMain">
+
+    <ListView
+        android:id="@+id/listView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:dividerHeight="32dp"
+        android:divider="#00000000"
+        android:paddingLeft="32dp"
+        android:paddingRight="32dp"
+        android:scrollbarStyle="outsideOverlay"/>
+
+
+</LinearLayout>
