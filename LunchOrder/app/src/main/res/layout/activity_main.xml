@@ -3,14 +3,50 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:gravity="center"
+    android:orientation="vertical"
     tools:context=".ActivityMain">
 
     <Button
         android:id="@+id/btnCustomList"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Custom List"/>
+        android:text="媽的!午餐要吃什麼啦!" />
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:gravity="bottom"
+        android:orientation="horizontal">
+
+        <CheckBox
+            android:id="@+id/cbAutoUpdate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:layout_marginRight="50dp"
+            android:text="自動同步" />
+
+        <Button
+
+            android:id="@+id/btnTestJson"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="測試連線" />
+
+        <Button
+
+            android:id="@+id/btnSetting"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="設定" />
+
+        <Button
+            android:id="@+id/btnAbout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="關於" />
+
+    </LinearLayout>
 
 </LinearLayout>

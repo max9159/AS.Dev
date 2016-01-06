@@ -20,6 +20,8 @@ public class ActivityCustomList extends AppCompatActivity {
 
     private Context context;
     private ListView listView;
+    private ListView listView2;
+    private ListView listView3;
     private MyAdapter myAdapter;
     private ArrayList<CardItem> cardItems;
     private Button btnLaunch;
@@ -32,7 +34,9 @@ public class ActivityCustomList extends AppCompatActivity {
         init();
         initUI();
         initAction();
-        initListView();
+        initListView(listView);
+        initListView(listView2);
+        initListView(listView3);
     }
 
     private void init() {
@@ -41,6 +45,8 @@ public class ActivityCustomList extends AppCompatActivity {
 
     private void initUI() {
         this.listView = (ListView) findViewById(R.id.listView);
+        this.listView2 = (ListView) findViewById(R.id.listView2);
+        this.listView3 = (ListView) findViewById(R.id.listView3);
         this.btnLaunch = (Button) findViewById(R.id.btnLaunch);
     }
 
@@ -62,6 +68,8 @@ public class ActivityCustomList extends AppCompatActivity {
 
                         for (int index = 0; index < listViewSize ; index++) {
                             listView.smoothScrollToPositionFromTop(listView.getLastVisiblePosition() + 100, 5, 1000);
+                            listView2.smoothScrollToPositionFromTop(listView2.getLastVisiblePosition() + 100, 5, 1000);
+                            listView3.smoothScrollToPositionFromTop(listView3.getLastVisiblePosition() + 100, 5, 1000);
                             try {
                                 // it helps scrolling to stay smooth as possible (by experiment)
                                 Thread.sleep(60);
@@ -71,31 +79,12 @@ public class ActivityCustomList extends AppCompatActivity {
                         }
                     }
                 }).start();
-                //listView.smoothScrollToPosition(20);
 
-               /* int i = 0;
-                while (true) {
-
-                    listView.smoothScrollToPosition(i);
-                    if (i == listView.getCount()) {
-                        break;
-                    }
-
-                    try {
-                        Thread.sleep(500);
-                    } catch (InterruptedException e) {
-                        // TODO Auto-generated catch block
-                        e.printStackTrace();
-                    }
-
-                    i++;
-                }
-*/
             }
         });
     }
 
-    private void initListView() {
+    private void initListView(ListView lv) {
         cardItems = new ArrayList<>();
         CardItem cardItem = null;
         //add KS
@@ -132,7 +121,7 @@ public class ActivityCustomList extends AppCompatActivity {
         }
 
         myAdapter = new MyAdapter(context);
-        listView.setAdapter(myAdapter);
+        lv.setAdapter(myAdapter);
 
     }
 
