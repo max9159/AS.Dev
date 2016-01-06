@@ -1,0 +1,56 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:weightSum="1"
+    tools:context=".ActivityMain"
+    android:background="@mipmap/slot">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal">
+        <ListView
+            android:id="@+id/listView3"
+            android:layout_width="120dp"
+            android:layout_height="185dp"
+            android:divider="#00000000"
+            android:dividerHeight="32dp"
+
+            android:scrollbarStyle="outsideOverlay" />
+        <ListView
+            android:id="@+id/listView2"
+            android:layout_width="120dp"
+            android:layout_height="185dp"
+            android:divider="#00000000"
+            android:dividerHeight="32dp"
+
+            android:scrollbarStyle="outsideOverlay" />
+        <ListView
+            android:id="@+id/listView"
+            android:layout_width="120dp"
+            android:layout_height="185dp"
+            android:divider="#00000000"
+            android:dividerHeight="32dp"
+
+            android:scrollbarStyle="outsideOverlay" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center">
+
+        <Button
+            android:id="@+id/btnLaunch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Launch" />
+    </LinearLayout>
+
+
+</LinearLayout>
