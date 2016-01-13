@@ -6,46 +6,55 @@
     android:orientation="vertical"
     android:weightSum="1"
     tools:context=".ActivityMain"
-    android:background="@mipmap/slot">
+    android:background="@drawable/slot_machine2">
 
 
     <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
+        android:layout_weight="0.56"
+        android:background="@drawable/lunchorder_club"></LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
         android:gravity="center"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:layout_margin="15dp"
+        android:background="#000000">
         <ListView
             android:id="@+id/listView3"
-            android:layout_width="93dp"
-            android:layout_height="185dp"
+            android:layout_width="90dp"
+            android:layout_height="125dp"
             android:divider="#00000000"
             android:dividerHeight="10dp"
-            android:layout_margin="5dp"
+            android:layout_margin="3dp"
             android:scrollbarStyle="outsideOverlay" />
         <ListView
             android:id="@+id/listView2"
-            android:layout_width="93dp"
-            android:layout_height="185dp"
+            android:layout_width="90dp"
+            android:layout_height="125dp"
             android:divider="#00000000"
             android:dividerHeight="10dp"
-            android:layout_margin="5dp"
+            android:layout_margin="3dp"
 
             android:scrollbarStyle="outsideOverlay" />
         <ListView
             android:id="@+id/listView"
-            android:layout_width="93dp"
-            android:layout_height="185dp"
+            android:layout_width="90dp"
+            android:layout_height="125dp"
             android:divider="#00000000"
             android:dividerHeight="10dp"
-            android:layout_margin="5dp"
+            android:layout_margin="3dp"
 
 
             android:scrollbarStyle="outsideOverlay" />
     </LinearLayout>
 
-    <LinearLayout
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="220dp"
         android:gravity="center">
 
         <Button
@@ -53,8 +62,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="SPIN"
-            />
-    </LinearLayout>
+            android:layout_gravity="center_horizontal|top" />
+    </FrameLayout>
 
 
 </LinearLayout>
