@@ -26,6 +26,7 @@ public class MyBaseAdapter extends BaseAdapter {
     private ImageLoader imageLoader;
 
     public MyBaseAdapter(Context context, ArrayList<FoodItem> foods) {
+        this.mContext = context;
         this.layoutInflater = LayoutInflater.from(context);
         this.imageLoader = UniversalImageLoaderHelper.getInstance(context);
         this.foodItems = foods;
@@ -70,11 +71,13 @@ public class MyBaseAdapter extends BaseAdapter {
             holder = (ViewHolder) convertView.getTag();
         }
 
-//        if (foodItems.get(position).getImgUrl() != "") {
-//            Picasso.with(mContext).load(foodItems.get(position).getImgUrl()).placeholder(R.drawable.slotmachine).into(holder.ivWallpaper);
+        if (foodItems.get(position).getImgUrl() != "") {
+            Picasso.with(mContext).load(foodItems.get(position).getImgUrl()).placeholder(R.drawable.slotmachine).into(holder.ivWallpaper);
 //            holder.ivWallpaper.setImageResource(R.drawable.slotmachine);
-//        }
-        //holder.ivWallpaper.setImageDrawable(getResources().getDrawable(cardItems.get(position).getBackgroundID()));
+            //imageLoader.displayImage(foodItems.get(position).getImgUrl(), holder.ivWallpaper);
+            //holder.ivWallpaper.setImageDrawable(getResources().getDrawable(cardItems.get(position).getBackgroundID()));
+        }
+
         holder.tvName.setText(foodItems.get(position).getName());
 
         return convertView;
