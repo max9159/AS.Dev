@@ -7,12 +7,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 
+import Controller.FoodItemControl;
 import lib_self.JsonManager;
 
 public class ActivityMain extends AppCompatActivity {
     private Context context;
     private Button btnCustomList;
     private Button btnTestJson;
+    private Button btnTestVolley;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +33,7 @@ public class ActivityMain extends AppCompatActivity {
     private void initUI() {
         btnCustomList = (Button) findViewById(R.id.btnCustomList);
         btnTestJson = (Button) findViewById(R.id.btnTestJson);
+        btnTestVolley = (Button) findViewById(R.id.btnTestVolley);
     }
 
     private void initAction() {
@@ -39,7 +42,14 @@ public class ActivityMain extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 JsonManager jsonManager = new JsonManager();
-                jsonManager.ConnectTest(context, "http://jdata.azurewebsites.net/test.json");
+                jsonManager.AsyncHttpClientConnectTest(context, "http://jdata.azurewebsites.net/test.json");
+            }
+        });
+        btnTestVolley.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FoodItemControl fdctrl = new FoodItemControl(context);
+                fdctrl.LoadFoodListByVolley();
             }
         });
     }
@@ -53,6 +63,7 @@ public class ActivityMain extends AppCompatActivity {
                 case R.id.btnCustomList:
                     i = new Intent(context, ActivityCustomList.class);
                     break;
+
             }
 
             if (i != null) {
@@ -61,4 +72,5 @@ public class ActivityMain extends AppCompatActivity {
             }
         }
     };
+
 }

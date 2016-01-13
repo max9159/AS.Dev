@@ -1,13 +1,19 @@
 package lib_self;
 
 import android.content.Context;
+import android.util.Log;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.JsonHttpResponseHandler;
 
 import org.json.JSONObject;
 
+import java.util.ArrayList;
+
+import Model.FoodItem;
 import cz.msebera.android.httpclient.Header;
 
 /**
@@ -16,10 +22,41 @@ import cz.msebera.android.httpclient.Header;
 public class JsonManager {
     //ProgressDialog mDialog;
 
-    public JsonManager(){
+    public JsonManager() {
 
     }
-    public void ConnectTest(final Context context, String urlString){
+
+    public static FoodItem ConverJsonToObj(String jsonRole) {
+        Gson gson = new Gson();
+
+        //Json to Object
+        FoodItem newFood = gson.fromJson(jsonRole, FoodItem.class);
+        Log.i("JsonManager.ConverJsonToObj()", "getName:" + newFood.getName());
+        Log.i("JsonManager.ConverJsonToObj()", "getDesc" + newFood.getDesc());
+        Log.i("JsonManager.ConverJsonToObj()", "getImgUrl" + newFood.getImgUrl());
+        Log.i("JsonManager.ConverJsonToObj()", "getLocation" + newFood.getLocation());
+        Log.i("JsonManager.ConverJsonToObj()", "getRating" + newFood.getRating());
+
+        Log.i("ConverJsonToList()->FoodItem", gson.toJson(newFood));
+
+        return newFood;
+    }
+
+    public static ArrayList<FoodItem> ConverJsonToList(String jsonRole) {
+        Gson gson = new Gson();
+
+        //Json to ArrayList
+        ArrayList<FoodItem> newFoodList;
+        newFoodList = gson.fromJson(jsonRole, new TypeToken<ArrayList<FoodItem>>() {
+        }.getType());
+
+        Log.i("ConverJsonToList()->ArrayList<FoodItem>", gson.toJson(newFoodList));
+
+        return newFoodList;
+    }
+
+
+    public void AsyncHttpClientConnectTest(final Context context, String urlString) {
         //mDialog.show();
 
         AsyncHttpClient client = new AsyncHttpClient();

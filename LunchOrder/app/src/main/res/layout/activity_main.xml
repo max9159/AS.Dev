@@ -36,10 +36,10 @@
 
         <Button
 
-            android:id="@+id/btnSetting"
+            android:id="@+id/btnTestVolley"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="設定" />
+            android:text="測試連線Volley" />
 
         <Button
             android:id="@+id/btnAbout"

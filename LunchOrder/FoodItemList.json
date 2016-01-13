@@ -1,0 +1,13 @@
+[{
+	"imgUrl": "https://lh4.googleusercontent.com/-v0soe-ievYE/AAAAAAAAAAI/AAAAAAADUqU/SQSt4Oqr1nc/s0-c-k-no-ns/photo.jpg",
+	"name": "GG food name",
+	"desc": "GG descrition",
+	"location": "123",
+	"rating": 5
+}, {
+	"imgUrl": "https://www.facebookbrand.com/img/fb-art.jpg",
+	"name": "FB name",
+	"desc": "FB desc",
+	"location": "456",
+	"rating": 4
+}]
