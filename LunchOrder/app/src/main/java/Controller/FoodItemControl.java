@@ -1,6 +1,7 @@
 package Controller;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.util.Log;
 import android.view.View;
@@ -24,6 +25,7 @@ public class FoodItemControl {
     private Context context;
     public static ArrayList<FoodItem> FoodListFromJson;
     public String targetFileSourceURL = "http://jdata.azurewebsites.net/FoodItemList.json";
+    ProgressDialog mDialog;
 
     public FoodItemControl(Context context) {
         this.context = context;
@@ -35,6 +37,14 @@ public class FoodItemControl {
         ListView listView2 = (ListView) rootView.findViewById(R.id.listView2);
         ListView listView3 = (ListView) rootView.findViewById(R.id.listView3);
 
+        for (int i = 0; i < 50; i++) {
+            FoodItem tempFood = new FoodItem();
+            tempFood.setImgUrl("https://iconalone.com/sites/default/files/styles/220x220/public/Slot%20machine%20bar%20symbol.svg_0.png");
+            tempFood.setName("food" + i);
+            FoodListFromJson.add(tempFood);
+        }
+
+
         myAdapter = new MyBaseAdapter(context, FoodListFromJson);
         listView.setAdapter(myAdapter);
         listView2.setAdapter(myAdapter);
@@ -43,6 +53,12 @@ public class FoodItemControl {
     }
 
     public void LoadFoodListByVolley() {
+
+        mDialog = new ProgressDialog(context);
+        mDialog.setMessage("Loading Data...");
+        mDialog.setCancelable(false);
+        mDialog.show();
+
         UtilVolley utilVolley = new UtilVolley(context);
         utilVolley.setRetryTimes(3);
         utilVolley.setTimeout(60000);
@@ -60,6 +76,7 @@ public class FoodItemControl {
                     Log.i("loadByVolleyObject()", "failed");
                     Toast.makeText(context, "Failed", Toast.LENGTH_LONG).show();
                 }
+                mDialog.dismiss();
             }
         });
         //Post
