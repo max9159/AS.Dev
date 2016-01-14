@@ -13,7 +13,7 @@ import lib_self.JsonManager;
 public class ActivityMain extends AppCompatActivity {
     private Context context;
     private Button btnCustomList;
-    private Button btnTestJson;
+    private Button btnTestConnectByAsyncHttp;
     private Button btnTestVolley;
 
     @Override
@@ -32,13 +32,13 @@ public class ActivityMain extends AppCompatActivity {
 
     private void initUI() {
         btnCustomList = (Button) findViewById(R.id.btnCustomList);
-        btnTestJson = (Button) findViewById(R.id.btnTestJson);
+        btnTestConnectByAsyncHttp = (Button) findViewById(R.id.btnTestJson);
         btnTestVolley = (Button) findViewById(R.id.btnTestVolley);
     }
 
     private void initAction() {
         btnCustomList.setOnClickListener(onClick);
-        btnTestJson.setOnClickListener(new View.OnClickListener() {
+        btnTestConnectByAsyncHttp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 JsonManager jsonManager = new JsonManager();
