@@ -1,7 +1,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="570dp"
     android:gravity="center"
     android:orientation="vertical"
     android:weightSum="1"
@@ -12,18 +12,17 @@
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.56"
+        android:layout_height="70dp"
         android:background="@drawable/lunchorder_club"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"></LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="165dp"
+        android:layout_height="155dp"
         android:gravity="center"
         android:orientation="horizontal"
-        android:layout_margin="15dp"
+        android:layout_margin="20dp"
         android:background="#000000">
         <ListView
             android:id="@+id/listView3"
@@ -56,7 +55,7 @@
 
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="260dp"
         android:gravity="center">
 
         <Button
