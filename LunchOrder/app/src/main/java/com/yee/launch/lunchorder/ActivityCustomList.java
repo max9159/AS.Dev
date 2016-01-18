@@ -52,6 +52,7 @@ public class ActivityCustomList extends AppCompatActivity {
     }
 
     private void initAction() {
+
         this.fdctrl = new FoodItemControl(context);
         this.fdctrl.LoadFoodListByVolley();
         this.listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -61,31 +62,72 @@ public class ActivityCustomList extends AppCompatActivity {
                 Toast.makeText(context, foodItems.get(i).getName(), Toast.LENGTH_SHORT).show();
             }
         });
+
         this.btnLaunch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 new Thread(new Runnable() {
-
                     @Override
                     public void run() {
-                        int listViewSize = listView.getAdapter().getCount();
-
-                        for (int index = 0; index < listViewSize; index++) {
-                            listView.smoothScrollToPositionFromTop(listView.getLastVisiblePosition() + 100, 5, 1000);
-                            listView2.smoothScrollToPositionFromTop(listView2.getLastVisiblePosition() + 100, 5, 1000);
-                            listView3.smoothScrollToPositionFromTop(listView3.getLastVisiblePosition() + 100, 5, 1000);
-                            try {
-                                // it helps scrolling to stay smooth as possible (by experiment)
-                                Thread.sleep(60);
-                            } catch (InterruptedException e) {
-
-                            }
-                        }
+                        ControlViewToScroll(listView);
                     }
                 }).start();
-
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        ControlViewToScroll(listView2);
+                    }
+                }).start();
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        ControlViewToScroll(listView3);
+                    }
+                }).start();
             }
         });
+    }
+
+    private void ControlViewToScroll(ListView lv) {
+        int listViewSize = lv.getAdapter().getCount();
+        boolean lv1_stop = false;
+        int lv1_move = 10;
+        int round = 0;
+
+        while (true) {
+
+            int lv1_lastPosition = lv.getLastVisiblePosition();
+
+            //keep run
+            if (lv1_lastPosition == listViewSize - 1) {
+                lv1_move = -1;
+                round++;
+            }
+            if (lv1_lastPosition == 2) {
+                lv1_move = 1;
+            }
+
+            //check stop
+            if (round > 0) {
+                if (lv1_lastPosition == 3) {
+                    lv1_stop = true;
+                    break;
+                }
+            }
+
+            if (!lv1_stop) {
+                lv.smoothScrollToPosition(lv1_lastPosition + lv1_move);
+            }
+
+            try {
+                // it helps scrolling to stay smooth as possible (by experiment)
+                Thread.sleep(60);
+            } catch (InterruptedException e) {
+
+            }
+        }
+
+
     }
 
 
