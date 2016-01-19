@@ -11,6 +11,7 @@ import android.widget.Toast;
 import com.yee.launch.lunchorder.R;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 import Model.FoodItem;
 import lib_self.JsonManager;
@@ -37,6 +38,7 @@ public class FoodItemControl {
         ListView listView2 = (ListView) rootView.findViewById(R.id.listView2);
         ListView listView3 = (ListView) rootView.findViewById(R.id.listView3);
 
+
         for (int i = 0; i < 50; i++) {
             FoodItem tempFood = new FoodItem();
             tempFood.setImgUrl("https://iconalone.com/sites/default/files/styles/220x220/public/Slot%20machine%20bar%20symbol.svg_0.png");
@@ -47,7 +49,17 @@ public class FoodItemControl {
 
         myAdapter = new MyBaseAdapter(context, FoodListFromJson);
         listView.setAdapter(myAdapter);
+
+        //random List
+        ArrayList<FoodItem> randomListForLV2 = new ArrayList<>(FoodListFromJson);
+        Collections.shuffle(randomListForLV2);
+        myAdapter = new MyBaseAdapter(context, randomListForLV2);
         listView2.setAdapter(myAdapter);
+
+        //random List
+        ArrayList<FoodItem> randomListForLV3 = new ArrayList<>(FoodListFromJson);
+        Collections.shuffle(randomListForLV3);
+        myAdapter = new MyBaseAdapter(context, randomListForLV3);
         listView3.setAdapter(myAdapter);
 
     }
