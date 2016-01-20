@@ -121,15 +121,22 @@ public class ActivityCustomList extends AppCompatActivity {
 
             //keep scroll
             if (lv_last_position == listViewSize - 1) {
-                lv_move = 0 - lv_move;
+                if (lv_move > 0) {
+                    lv_move = 0 - lv_move;
+                }
                 round_count++;
+                Log.d("debug", lv.getId() + ", round_count++," + lv_last_position + ", " + (listViewSize - 1) + " ," + round_count);
             }
             if (lv_last_position == 2) {
-                lv_move = Math.abs(lv_move);
+                if (lv_move < 0) {
+                    lv_move = Math.abs(lv_move);
+                }
+                Log.d("debug", lv.getId() + ", Math.abs(lv_move)," + lv_last_position + ", lv_move:" + lv_move);
             }
 
             if (!lv_stop) {
                 lv.smoothScrollToPosition(lv_last_position + lv_move);
+                Log.d("debug", lv.getId() + ", Scroll," + lv_last_position + ", " + lv_move);
             }
 
             try {
