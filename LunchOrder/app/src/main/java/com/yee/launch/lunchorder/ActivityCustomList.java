@@ -11,6 +11,8 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 
 import Controller.FoodItemControl;
 import Model.FoodItem;
@@ -27,6 +29,10 @@ public class ActivityCustomList extends AppCompatActivity {
 
     private Button btnLaunch;
     private FoodItemControl fdctrl;
+
+    int listViewOneExpectedPosition;
+    int listViewTwoExpectedPosition;
+    int listViewThreeExpectedPosition;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,38 +73,77 @@ public class ActivityCustomList extends AppCompatActivity {
         this.btnLaunch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                boolean hasConsequence = true;// hasConsequence();
+                if(hasConsequence){
+                    ArrayList<FoodItem> foodItems1 = getFoodItems(listView);
+                    ArrayList<FoodItem> foodItems2 =  getFoodItems(listView2);
+                    ArrayList<FoodItem> foodItems3 =  getFoodItems(listView3);
+                    listViewOneExpectedPosition = getRandomIndex(foodItems1)+1;
+                    FoodItem targetItem = foodItems1.get(listViewOneExpectedPosition);
+                    listViewTwoExpectedPosition =  getTargetIndexByTargetItem(foodItems2,targetItem)+1;
+                    listViewThreeExpectedPosition =  getTargetIndexByTargetItem(foodItems3,targetItem)+1;
+                }else{
+                    listViewOneExpectedPosition = listViewTwoExpectedPosition = listViewThreeExpectedPosition = 1;
+                }
+
                 new Thread(new Runnable() {
                     @Override
                     public void run() {
-                        ControlViewToScroll(listView);
+                        ControlViewToScroll(listView,listViewOneExpectedPosition);
                     }
                 }).start();
                 new Thread(new Runnable() {
                     @Override
                     public void run() {
-                        ControlViewToScroll(listView2);
+                        ControlViewToScroll(listView2,listViewTwoExpectedPosition);
                     }
                 }).start();
                 new Thread(new Runnable() {
                     @Override
                     public void run() {
-                        ControlViewToScroll(listView3);
+                        ControlViewToScroll(listView3,listViewThreeExpectedPosition);
                     }
                 }).start();
             }
         });
     }
 
-    private void ControlViewToScroll(ListView lv) {
+    private int getTargetIndexByTargetItem(ArrayList<FoodItem> foodItems, FoodItem targetItem) {
+        int result = -1;
+        for(int i=0;i<foodItems.size();i++){
+            if(foodItems.get(i).equals(targetItem)){
+                result = i;
+            }
+        }
+        return result;
+    }
+
+    private ArrayList<FoodItem> getFoodItems(ListView lv){
+        return ((MyBaseAdapter)lv.getAdapter()).getFoodItems();
+    }
+
+    private int getRandomIndex(ArrayList<FoodItem> foodItemList){
+        int itemCount = foodItemList.size();
+        int randomIndex = (int)(Math.random()*itemCount);
+        return randomIndex;
+    }
+
+    private boolean hasConsequence(){
+        return Math.random()<0.33;
+    }
+
+
+
+    private void ControlViewToScroll(ListView lv, int expected_stop_position) {
         int listViewSize = lv.getAdapter().getCount();
         boolean lv_stop = false;
         int lv_move = 2;
 
         boolean move_slow = false;
         int round_count = 0;
-        int expected_stop_round = 5;
-        int expected_stop_position = 3;
-
+        int expected_stop_round = 2;
+        //expected_stop_position = 3;
+        Log.d("debug", lv.getId() + ", expected_stop_position: " + expected_stop_position);
         while (true) {
 
             int lv_last_position = lv.getLastVisiblePosition();

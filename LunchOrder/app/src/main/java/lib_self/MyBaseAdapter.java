@@ -13,6 +13,7 @@ import com.squareup.picasso.Picasso;
 import com.yee.launch.lunchorder.R;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 import Model.FoodItem;
 
@@ -81,5 +82,9 @@ public class MyBaseAdapter extends BaseAdapter {
         holder.tvName.setText(foodItems.get(position).getName());
 
         return convertView;
+    }
+
+    public ArrayList<FoodItem> getFoodItems(){
+        return foodItems;
     }
 }
