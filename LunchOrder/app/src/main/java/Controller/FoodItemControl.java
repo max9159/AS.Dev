@@ -25,7 +25,7 @@ public class FoodItemControl {
     private MyBaseAdapter myAdapter;
     private Context context;
     public static ArrayList<FoodItem> FoodListFromJson;
-    public String targetFileSourceURL = "http://jdata.azurewebsites.net/FoodItemList.json";
+    public String targetFileSourceURL = "http://jdata.azurewebsites.net/API/Files/FoodItemList.json";
     ProgressDialog mDialog;
 
     public FoodItemControl(Context context) {
@@ -37,15 +37,6 @@ public class FoodItemControl {
         ListView listView = (ListView) rootView.findViewById(R.id.listView);
         ListView listView2 = (ListView) rootView.findViewById(R.id.listView2);
         ListView listView3 = (ListView) rootView.findViewById(R.id.listView3);
-
-
-        for (int i = 0; i < 50; i++) {
-            FoodItem tempFood = new FoodItem();
-            tempFood.setImgUrl("https://iconalone.com/sites/default/files/styles/220x220/public/Slot%20machine%20bar%20symbol.svg_0.png");
-            tempFood.setName("food" + i);
-            FoodListFromJson.add(tempFood);
-        }
-
 
         myAdapter = new MyBaseAdapter(context, FoodListFromJson);
         listView.setAdapter(myAdapter);
