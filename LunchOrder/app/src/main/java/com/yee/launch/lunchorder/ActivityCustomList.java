@@ -3,6 +3,7 @@ package com.yee.launch.lunchorder;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -90,33 +91,45 @@ public class ActivityCustomList extends AppCompatActivity {
 
     private void ControlViewToScroll(ListView lv) {
         int listViewSize = lv.getAdapter().getCount();
-        boolean lv1_stop = false;
-        int lv1_move = 10;
-        int round = 0;
+        boolean lv_stop = false;
+        int lv_move = 2;
+
+        boolean move_slow = false;
+        int round_count = 0;
+        int expected_stop_round = 5;
+        int expected_stop_position = 3;
 
         while (true) {
 
-            int lv1_lastPosition = lv.getLastVisiblePosition();
+            int lv_last_position = lv.getLastVisiblePosition();
 
-            //keep run
-            if (lv1_lastPosition == listViewSize - 1) {
-                lv1_move = -1;
-                round++;
-            }
-            if (lv1_lastPosition == 2) {
-                lv1_move = 1;
-            }
+            //check expected stop round is coming
+            if (round_count >= expected_stop_round) {
 
-            //check stop
-            if (round > 0) {
-                if (lv1_lastPosition == 3) {
-                    lv1_stop = true;
+                if (move_slow == false) {
+                    lv_move = 1;
+                    move_slow = true;
+                    Log.d("debug", lv.getId() + ", In final round");
+                }
+                Log.d("debug", lv.getId() + ",round" + round_count + ", lv_last_position" + lv_last_position);
+                if (lv_last_position == expected_stop_position) {
+                    lv_stop = true;
+                    Log.d("debug", lv.getId() + ",Break");
                     break;
                 }
             }
 
-            if (!lv1_stop) {
-                lv.smoothScrollToPosition(lv1_lastPosition + lv1_move);
+            //keep scroll
+            if (lv_last_position == listViewSize - 1) {
+                lv_move = 0 - lv_move;
+                round_count++;
+            }
+            if (lv_last_position == 2) {
+                lv_move = Math.abs(lv_move);
+            }
+
+            if (!lv_stop) {
+                lv.smoothScrollToPosition(lv_last_position + lv_move);
             }
 
             try {
