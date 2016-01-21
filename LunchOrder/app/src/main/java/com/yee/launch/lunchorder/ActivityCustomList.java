@@ -71,7 +71,8 @@ public class ActivityCustomList extends AppCompatActivity {
         this.btnLaunch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                boolean hasConsequence = true;// hasConsequence();
+                boolean hasConsequence = hasConsequence();
+                Log.i("hasConsequence", "hasConsequence:" + String.valueOf(hasConsequence));
                 if (hasConsequence) {
                     ArrayList<FoodItem> foodItems1 = getFoodItems(listView);
                     ArrayList<FoodItem> foodItems2 = getFoodItems(listView2);
@@ -125,7 +126,7 @@ public class ActivityCustomList extends AppCompatActivity {
         int itemCount = foodItemList.size();
         int randomIndex = (int) (Math.random() * (itemCount - 2) + 1);//-1:for position start with 0 // -1:do not randomly get last item // +1:do not randomly get first item
 
-        Log.d("getRandomIndex", "randomIndex:" + randomIndex);
+        Log.d("getRandomIndex", String.format("itemCount:%d, randomIndex:%d", itemCount, randomIndex));
         return randomIndex;
     }
 
