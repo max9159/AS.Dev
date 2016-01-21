@@ -123,7 +123,7 @@ public class ActivityCustomList extends AppCompatActivity {
 
     private int getRandomIndex(ArrayList<FoodItem> foodItemList) {
         int itemCount = foodItemList.size();
-        int randomIndex = (int) (Math.random() * itemCount - 1);
+        int randomIndex = (int) (Math.random() * (itemCount - 2) + 1);//-1:for position start with 0 // -1:do not randomly get last item // +1:do not randomly get first item
 
         Log.d("getRandomIndex", "randomIndex:" + randomIndex);
         return randomIndex;
