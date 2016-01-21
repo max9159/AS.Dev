@@ -28,6 +28,10 @@ public class ActivityCustomList extends AppCompatActivity {
     private Button btnLaunch;
     private FoodItemControl fdctrl;
 
+    int listViewOneExpectedPosition;
+    int listViewTwoExpectedPosition;
+    int listViewThreeExpectedPosition;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -67,26 +71,66 @@ public class ActivityCustomList extends AppCompatActivity {
         this.btnLaunch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                boolean hasConsequence = true;// hasConsequence();
+                if (hasConsequence) {
+                    ArrayList<FoodItem> foodItems1 = getFoodItems(listView);
+                    ArrayList<FoodItem> foodItems2 = getFoodItems(listView2);
+                    ArrayList<FoodItem> foodItems3 = getFoodItems(listView3);
+                    listViewOneExpectedPosition = getRandomIndex(foodItems1);
+                    FoodItem targetItem = foodItems1.get(listViewOneExpectedPosition);
+                    listViewTwoExpectedPosition = getTargetIndexByTargetItem(foodItems2, targetItem);
+                    listViewThreeExpectedPosition = getTargetIndexByTargetItem(foodItems3, targetItem);
+                } else {
+                    listViewOneExpectedPosition = listViewTwoExpectedPosition = listViewThreeExpectedPosition = 1;
+                }
+
                 new Thread(new Runnable() {
                     @Override
                     public void run() {
-                        ControlViewToScroll(listView);
+                        ControlViewToScroll(listView, listViewOneExpectedPosition);
                     }
                 }).start();
                 new Thread(new Runnable() {
                     @Override
                     public void run() {
-                        ControlViewToScroll(listView2);
+                        ControlViewToScroll(listView2, listViewTwoExpectedPosition);
                     }
                 }).start();
                 new Thread(new Runnable() {
                     @Override
                     public void run() {
-                        ControlViewToScroll(listView3);
+                        ControlViewToScroll(listView3, listViewThreeExpectedPosition);
                     }
                 }).start();
             }
         });
+    }
+
+
+    private int getTargetIndexByTargetItem(ArrayList<FoodItem> foodItems, FoodItem targetItem) {
+        int result = -1;
+        for (int i = 0; i < foodItems.size(); i++) {
+            if (foodItems.get(i).equals(targetItem)) {
+                result = i;
+            }
+        }
+        return result;
+    }
+
+    private ArrayList<FoodItem> getFoodItems(ListView lv) {
+        return ((MyBaseAdapter) lv.getAdapter()).getFoodItems();
+    }
+
+    private int getRandomIndex(ArrayList<FoodItem> foodItemList) {
+        int itemCount = foodItemList.size();
+        int randomIndex = (int) (Math.random() * itemCount - 1);
+
+        Log.d("getRandomIndex", "randomIndex:" + randomIndex);
+        return randomIndex;
+    }
+
+    private boolean hasConsequence() {
+        return Math.random() < 0.33;
     }
 
     private void ControlViewToScroll(ListView lv, int expected_stop_position) {
@@ -97,8 +141,11 @@ public class ActivityCustomList extends AppCompatActivity {
         boolean final_round = false;
         int round_count = 0;
         int expected_stop_round = 5;
-        //int expected_stop_position = 1;
-        Log.i("debug", "listViewSize:" + String.valueOf(listViewSize));
+
+
+        Log.i("ControlViewToScroll", lv.getId() + ", expected_stop_position: " + expected_stop_position);
+
+        int check_position_change = -1;
         while (true) {
 
             int lv_last_position = lv.getLastVisiblePosition();
@@ -109,18 +156,20 @@ public class ActivityCustomList extends AppCompatActivity {
                 if (final_round == false) {
                     lv_move = 1;
                     final_round = true;
-                    Log.i("debug", lv.getId() + ", In final round");
+                    Log.i("ControlViewToScroll", lv.getId() + ", In final round");
                 }
-                Log.d("debug", lv.getId() + ", round" + round_count + ", lv_last_position" + lv_last_position);
+                Log.d("ControlViewToScroll", lv.getId() + ", round:" + round_count + ", lv_last_position:" + lv_last_position);
                 if (lv_last_position == expected_stop_position) {
                     lv_stop = true;
-                    Log.d("debug", lv.getId() + ", Break, lv_last_position:" + lv_last_position);
+                    Log.d("ControlViewToScroll", lv.getId() + ", Break, lv_last_position:" + lv_last_position);
                     break;
                 }
             }
 
 
             if (!lv_stop) {
+
+
                 //keep scroll
                 if (lv_last_position == listViewSize - 1) {
                     if (lv_move > 0) {
@@ -128,18 +177,18 @@ public class ActivityCustomList extends AppCompatActivity {
                     }
                     //lv.invalidateViews();
                     round_count++;
-                    Log.d("debug", lv.getId() + ", round_count++," + lv_last_position + ", " + (listViewSize - 1) + " ," + round_count);
+                    Log.d("ControlViewToScroll", lv.getId() + ", round_count++," + lv_last_position + ", " + (listViewSize - 1) + " ," + round_count);
                 }
                 if (lv_last_position == 1) {
                     if (lv_move < 0) {
                         lv_move = Math.abs(lv_move);
                     }
-                    Log.d("debug", lv.getId() + ", Math.abs(lv_move)," + lv_last_position + ", lv_move:" + lv_move);
+                    Log.d("ControlViewToScroll", lv.getId() + ", Math.abs(lv_move)," + lv_last_position + ", lv_move:" + lv_move);
                 }
 
                 //trigger scroll
                 lv.smoothScrollToPosition(lv_last_position + lv_move);
-                Log.d("debug", lv.getId() + ", Scroll," + lv_last_position + ", " + lv_move);
+                Log.d("ControlViewToScroll", lv.getId() + ", Scroll," + lv_last_position + ", " + lv_move);
             }
 
             try {

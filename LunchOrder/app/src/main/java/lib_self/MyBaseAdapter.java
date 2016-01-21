@@ -82,4 +82,8 @@ public class MyBaseAdapter extends BaseAdapter {
 
         return convertView;
     }
+
+    public ArrayList<FoodItem> getFoodItems(){
+        return foodItems;
+    }
 }

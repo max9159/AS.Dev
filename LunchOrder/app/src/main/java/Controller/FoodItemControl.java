@@ -38,21 +38,30 @@ public class FoodItemControl {
         ListView listView2 = (ListView) rootView.findViewById(R.id.listView2);
         ListView listView3 = (ListView) rootView.findViewById(R.id.listView3);
 
+        FoodListFromJson = addFirstAndLastTempItem(FoodListFromJson);
         myAdapter = new MyBaseAdapter(context, FoodListFromJson);
         listView.setAdapter(myAdapter);
 
         //random List
         ArrayList<FoodItem> randomListForLV2 = new ArrayList<>(FoodListFromJson);
         Collections.shuffle(randomListForLV2);
+        randomListForLV2 = addFirstAndLastTempItem(randomListForLV2);
         myAdapter = new MyBaseAdapter(context, randomListForLV2);
         listView2.setAdapter(myAdapter);
 
         //random List
         ArrayList<FoodItem> randomListForLV3 = new ArrayList<>(FoodListFromJson);
         Collections.shuffle(randomListForLV3);
+        randomListForLV3 = addFirstAndLastTempItem(randomListForLV3);
         myAdapter = new MyBaseAdapter(context, randomListForLV3);
         listView3.setAdapter(myAdapter);
 
+    }
+
+    private ArrayList<FoodItem> addFirstAndLastTempItem(ArrayList<FoodItem> fds) {
+        fds.add(0, new FoodItem("First", ""));
+        fds.add(new FoodItem("Last", ""));
+        return fds;
     }
 
     public void LoadFoodListByVolley() {

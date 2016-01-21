@@ -10,6 +10,15 @@ public class FoodItem {
     private String location;
     private int rating;
 
+    public FoodItem() {
+
+    }
+
+    public FoodItem(String name, String imgUrl) {
+        this.imgUrl = imgUrl;
+        this.name = name;
+    }
+
     public String getImgUrl() {
         return imgUrl;
     }
