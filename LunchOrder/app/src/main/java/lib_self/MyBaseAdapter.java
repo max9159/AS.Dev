@@ -76,14 +76,15 @@ public class MyBaseAdapter extends BaseAdapter {
 //            holder.ivWallpaper.setImageResource(R.drawable.slotmachine);
             //imageLoader.displayImage(foodItems.get(position).getImgUrl(), holder.ivWallpaper);
             //holder.ivWallpaper.setImageDrawable(getResources().getDrawable(cardItems.get(position).getBackgroundID()));
+        } else {
+            holder.ivWallpaper.setImageResource(R.mipmap.slot);
         }
-
         holder.tvName.setText(foodItems.get(position).getName());
 
         return convertView;
     }
 
-    public ArrayList<FoodItem> getFoodItems(){
+    public ArrayList<FoodItem> getFoodItems() {
         return foodItems;
     }
 }
