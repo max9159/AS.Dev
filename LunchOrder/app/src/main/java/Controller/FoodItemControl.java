@@ -10,6 +10,9 @@ import android.widget.Toast;
 
 import com.yee.launch.lunchorder.R;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -80,7 +83,12 @@ public class FoodItemControl {
             public void onLoaded(String result, int status, int ErrorCode) {
                 if (status == UtilVolley.STATUS_SUCCESS) {
                     Toast.makeText(context, "Success", Toast.LENGTH_LONG).show();
-                    Log.i("loadByVolleyObject()", "Success:" + result.toString());
+                    Log.i("loadByVolleyObject()", "Success:" + result);
+                    try {
+                        result = URLDecoder.decode(URLEncoder.encode(result, "iso8859-1"), "UTF-8");
+                    } catch (UnsupportedEncodingException e) {
+                        e.printStackTrace();
+                    }
                     FoodListFromJson = JsonManager.ConverJsonToList(result);
                     initListView();
                     //Toast.makeText(context, "conver getName"+getfoodFromJson.getName(), Toast.LENGTH_LONG).show();
