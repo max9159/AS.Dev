@@ -60,7 +60,7 @@ public class UtilVolley {
         //取得Volley Request的佇列
         requestQueue = Volley.newRequestQueue(context);
         //定義一個新的Request
-        StringRequest stringRequest = new StringRequest(
+        StringRequest stringRequest = new UTF8StringRequest(
                 url
                 , new Response.Listener<String>() {
             @Override
