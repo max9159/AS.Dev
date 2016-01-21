@@ -59,8 +59,8 @@ public class FoodItemControl {
     }
 
     private ArrayList<FoodItem> addFirstAndLastTempItem(ArrayList<FoodItem> fds) {
-        fds.add(0, new FoodItem("First", ""));
-        fds.add(new FoodItem("Last", ""));
+        fds.add(0, new FoodItem("７", ""));
+        fds.add(new FoodItem("７", ""));
         return fds;
     }
 
