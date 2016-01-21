@@ -31,13 +31,13 @@ public class JsonManager {
 
         //Json to Object
         FoodItem newFood = gson.fromJson(jsonRole, FoodItem.class);
-        Log.i("JsonManager.ConverJsonToObj()", "getName:" + newFood.getName());
-        Log.i("JsonManager.ConverJsonToObj()", "getDesc" + newFood.getDesc());
-        Log.i("JsonManager.ConverJsonToObj()", "getImgUrl" + newFood.getImgUrl());
-        Log.i("JsonManager.ConverJsonToObj()", "getLocation" + newFood.getLocation());
-        Log.i("JsonManager.ConverJsonToObj()", "getRating" + newFood.getRating());
+        Log.i("ConverJsonToObj", "getName:" + newFood.getName());
+        Log.i("ConverJsonToObj", "getDesc" + newFood.getDesc());
+        Log.i("ConverJsonToObj", "getImgUrl" + newFood.getImgUrl());
+        Log.i("ConverJsonToObj", "getLocation" + newFood.getLocation());
+        Log.i("ConverJsonToObj", "getRating" + newFood.getRating());
 
-        Log.i("ConverJsonToList()->FoodItem", gson.toJson(newFood));
+        Log.i("gson.toJson", gson.toJson(newFood));
 
         return newFood;
     }
@@ -50,7 +50,7 @@ public class JsonManager {
         newFoodList = gson.fromJson(jsonRole, new TypeToken<ArrayList<FoodItem>>() {
         }.getType());
 
-        Log.i("ConverJsonToList()->ArrayList<FoodItem>", gson.toJson(newFoodList));
+        Log.i("gson.toJson", gson.toJson(newFoodList));
 
         return newFoodList;
     }

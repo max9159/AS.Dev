@@ -141,7 +141,7 @@ public class ActivityCustomList extends AppCompatActivity {
 
         boolean final_round = false;
         int round_count = 0;
-        int expected_stop_round = 5;
+        int expected_stop_round = 3;
 
 
         Log.i("ControlViewToScroll", lv.getId() + ", expected_stop_position: " + expected_stop_position);
