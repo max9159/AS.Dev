@@ -89,16 +89,16 @@ public class ActivityCustomList extends AppCompatActivity {
         });
     }
 
-    private void ControlViewToScroll(ListView lv) {
+    private void ControlViewToScroll(ListView lv, int expected_stop_position) {
         int listViewSize = lv.getAdapter().getCount();
         boolean lv_stop = false;
         int lv_move = 2;
 
-        boolean move_slow = false;
+        boolean final_round = false;
         int round_count = 0;
         int expected_stop_round = 5;
-        int expected_stop_position = 3;
-
+        //int expected_stop_position = 1;
+        Log.i("debug", "listViewSize:" + String.valueOf(listViewSize));
         while (true) {
 
             int lv_last_position = lv.getLastVisiblePosition();
@@ -106,35 +106,38 @@ public class ActivityCustomList extends AppCompatActivity {
             //check expected stop round is coming
             if (round_count >= expected_stop_round) {
 
-                if (move_slow == false) {
+                if (final_round == false) {
                     lv_move = 1;
-                    move_slow = true;
-                    Log.d("debug", lv.getId() + ", In final round");
+                    final_round = true;
+                    Log.i("debug", lv.getId() + ", In final round");
                 }
-                Log.d("debug", lv.getId() + ",round" + round_count + ", lv_last_position" + lv_last_position);
+                Log.d("debug", lv.getId() + ", round" + round_count + ", lv_last_position" + lv_last_position);
                 if (lv_last_position == expected_stop_position) {
                     lv_stop = true;
-                    Log.d("debug", lv.getId() + ",Break");
+                    Log.d("debug", lv.getId() + ", Break, lv_last_position:" + lv_last_position);
                     break;
                 }
             }
 
-            //keep scroll
-            if (lv_last_position == listViewSize - 1) {
-                if (lv_move > 0) {
-                    lv_move = 0 - lv_move;
-                }
-                round_count++;
-                Log.d("debug", lv.getId() + ", round_count++," + lv_last_position + ", " + (listViewSize - 1) + " ," + round_count);
-            }
-            if (lv_last_position == 2) {
-                if (lv_move < 0) {
-                    lv_move = Math.abs(lv_move);
-                }
-                Log.d("debug", lv.getId() + ", Math.abs(lv_move)," + lv_last_position + ", lv_move:" + lv_move);
-            }
 
             if (!lv_stop) {
+                //keep scroll
+                if (lv_last_position == listViewSize - 1) {
+                    if (lv_move > 0) {
+                        lv_move = 0 - lv_move;
+                    }
+                    //lv.invalidateViews();
+                    round_count++;
+                    Log.d("debug", lv.getId() + ", round_count++," + lv_last_position + ", " + (listViewSize - 1) + " ," + round_count);
+                }
+                if (lv_last_position == 1) {
+                    if (lv_move < 0) {
+                        lv_move = Math.abs(lv_move);
+                    }
+                    Log.d("debug", lv.getId() + ", Math.abs(lv_move)," + lv_last_position + ", lv_move:" + lv_move);
+                }
+
+                //trigger scroll
                 lv.smoothScrollToPosition(lv_last_position + lv_move);
                 Log.d("debug", lv.getId() + ", Scroll," + lv_last_position + ", " + lv_move);
             }
