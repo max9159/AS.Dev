@@ -84,11 +84,6 @@ public class FoodItemControl {
                 if (status == UtilVolley.STATUS_SUCCESS) {
                     Toast.makeText(context, "Success", Toast.LENGTH_LONG).show();
                     Log.i("loadByVolleyObject()", "Success:" + result);
-                    try {
-                        result = URLDecoder.decode(URLEncoder.encode(result, "iso8859-1"), "UTF-8");
-                    } catch (UnsupportedEncodingException e) {
-                        e.printStackTrace();
-                    }
                     FoodListFromJson = JsonManager.ConverJsonToList(result);
                     initListView();
                     //Toast.makeText(context, "conver getName"+getfoodFromJson.getName(), Toast.LENGTH_LONG).show();
